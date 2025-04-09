@@ -7,17 +7,14 @@ public class Address {
 
     //ctor
     public Address(int zip,int street) {
-
         this.street = street;
         this.zip = zip;
     }
+
     //getters
-    public int getZip(){
-        return this.zip;
-    }
-    public int getStreet(){
-        return this.street;
-    }
+    public int getZip(){return this.zip;}
+    public int getStreet(){return this.street;}
+
     //Extra methods
     @Override
     public boolean equals(Object obj){
@@ -29,7 +26,7 @@ public class Address {
     }
     @Override
     public String toString(){
-        return "Zip: "+this.zip + ", Street: "+this.zip;
+        return this.zip + "-" + this.street;
     }
 
 }

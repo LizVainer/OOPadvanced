@@ -6,7 +6,7 @@ import java.util.Random;
 public class MainOffice {
     public static int clock=0;
     private Hub hub;
-    private ArrayList<Package> packages;
+    private ArrayList<Package> packages = new ArrayList<>();
 
     public MainOffice(int branches, int trucksForBranch) {
         clock = 0;
@@ -28,13 +28,24 @@ public class MainOffice {
             hub.addBranch(branch);
         }
     }
+    //getters
+    public static int getClock(){return clock;}
+    public Hub getHub(){return hub;}
+    public Branch getBranch(){return hub.getBranch(zip);}
+
 
 
     public void play(int playTime){
-        tick();
+        System.out.println("========== START ========");
+        for(int i=0;i<playTime;i++){
+            tick();
+        }
+      System.out.println("========= STOP ========");
+        printReport();
     }
 
     public void tick(){
+        System.out.printf("%02d:%02d\n", clock / 60, clock % 60);
         MainOffice.clock++;
         hub.work();
 
@@ -71,7 +82,7 @@ public class MainOffice {
 
             switch (type) {
                 case 1://small package
-                    int ack = (int) (Math.random() *2)+1;
+                    int ack = (int) (Math.random() *2);
                     boolean acknowledge;
                     if(ack==0) { acknowledge=true;} else { acknowledge=false;}
                     newPackage = new SmallPackage(priority,sender,reciever,acknowledge);
@@ -81,6 +92,7 @@ public class MainOffice {
 
                 case 2://standard package
                     int weight = (int) (Math.random() * 10) + 1;
+                    this.packages.add(newPackage);
                     newPackage = new StandardPackage(priority,sender,reciever,weight);
                     System.out.println("Created StandardPackage");
                     break;
@@ -90,9 +102,17 @@ public class MainOffice {
                     int width = (int) (Math.random()* 500)+1;
                     int length = (int)(Math.random()* 1000)+1;
                     newPackage = new NonStandardPackage(priority,sender,reciever,width,length,height);
+                    this.packages.add(newPackage);
                     System.out.println("Created NonStandardPackage");
                     break;
             }
+        }
+
+    }
+    public void printReport(){
+        for(int i=0;i<packages.size();i++){
+            System.out.println("TRACKING "+packages.get(i));
+            packages.get(i).PrintTracking();
         }
     }
 }

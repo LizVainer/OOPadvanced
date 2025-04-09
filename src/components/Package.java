@@ -17,6 +17,7 @@ public abstract class Package {
         this.senderAddress = senderAddress;
         this.destinationAddress = destinationAddress;
         this.tracking = new ArrayList<>();
+        addTracking(null,Status.CREATION); //adding first null package
     }
 
     //methods
@@ -52,22 +53,23 @@ public abstract class Package {
 
     //getters
     public int getPackageID() {
-        return packageID;
+        return this.packageID;
     }
-
     public Priority getPriority() {
-        return priority;
+        return this.priority;
     }
-
     public Status getStatus() {
-        return status;
+        return this.status;
     }
-
     public Address getSenderAddress() {
-        return senderAddress;
+        return this.senderAddress;
+    }
+    public Address getDestinationAddress() {
+        return this.destinationAddress;
     }
 
-    public Address getDestinationAddress() {
-        return destinationAddress;
-    }
+    //setters
+    public void setStatus(Status value){ this.status=value;}
+
+
 }

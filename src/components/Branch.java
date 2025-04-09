@@ -34,6 +34,7 @@ public class Branch {
         }
         return false;
     }
+    //getters
 
     @Override
     public String toString() {
