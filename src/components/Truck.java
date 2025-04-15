@@ -1,9 +1,11 @@
+//Elizaveta Vainer 332412055
+//Shir Cohen 207365024
 package components;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Truck  implements Node {
+public abstract class Truck implements Node {
     private static int nextTruckID = 2000;
     private int truckID;
     private String licencePlate;
@@ -12,7 +14,9 @@ public abstract class Truck  implements Node {
     private int timeLeft;
     private ArrayList<Package> packages;
 
-    //ctor
+    //constructor
+    //gets nothing
+    //sets random license, model, and initializes values
     public Truck() {
         Random random = new Random();
         this.truckID = nextTruckID++;
@@ -23,6 +27,9 @@ public abstract class Truck  implements Node {
         this.packages = new ArrayList<>();
     }
 
+    //constructor
+    //gets license plate and model
+    //sets truck with those values
     public Truck(String licencePlate, String truckModel) {
         this.truckID = nextTruckID++;
         this.licencePlate = licencePlate;
@@ -32,75 +39,98 @@ public abstract class Truck  implements Node {
         this.packages = new ArrayList<>();
     }
 
-    //getters
+    //gets nothing
+    //returns truck ID
     public int getTruckID() {
-        return this.truckID;
+        return truckID;
     }
 
+    //gets nothing
+    //returns license plate string
     public String getLicencePlate() {
-        return this.licencePlate;
+        return licencePlate;
     }
 
+    //gets nothing
+    //returns model string
     public String getTruckModel() {
-        return this.truckModel;
+        return truckModel;
     }
 
+    //gets nothing
+    //returns if the truck is available
     public boolean isAvailable() {
-        return this.available;
+        return available;
     }
 
+    //gets nothing
+    //returns the time left
     public int getTimeLeft() {
-        return this.timeLeft;
+        return timeLeft;
     }
 
+    //gets nothing
+    //returns the list of packages
     public ArrayList<Package> getPackages() {
         return packages;
     }
 
-    //setters
+    //gets a boolean
+    //sets truck availability
     public void setAvailable(boolean value) {
         this.available = value;
     }
 
+    //gets a list of packages
+    //replaces the truck's package list
     public void setPackages(ArrayList<Package> value) {
         this.packages = value;
     }
 
+    //gets an int
+    //sets the time left
     public void setTimeLeft(int value) {
         this.timeLeft = value;
     }
 
-    //methods from implementation
+    //gets a package
+    //adds it to the truck
     @Override
     public void collectPackage(Package p) {
         packages.add(p);
     }
 
+    //gets a package
+    //removes it from the truck
     @Override
     public void deliverPackage(Package p) {
         packages.remove(p);
     }
 
+    //abstract method
+    //gets nothing
+    //subclasses must define what the truck does during work
     @Override
     public abstract void work();
 
+    //gets another object
+    //compares by ID, license, and model
+    //returns true if all equal
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Truck) {
-            Truck other = (Truck) obj;
-            return this.truckID == other.truckID && this.licencePlate.equals(other.licencePlate) && this.truckModel.equals(other.truckModel);
+        if (obj instanceof Truck other) {
+            return truckID == other.truckID &&
+                    licencePlate.equals(other.licencePlate) &&
+                    truckModel.equals(other.truckModel);
         }
         return false;
     }
 
+    //gets nothing
+    //builds a string of truck info
+    //returns it
     @Override
     public String toString() {
-        String string = "Truck ID: " + truckID + ", License Plate: " + licencePlate + ", Model: " + truckModel + ", Available: " + available + ", Time Left: " + timeLeft + ", Packages:";
-        for (int i = 0; i < packages.size(); i++) {
-            string += "\n" + packages.get(i).toString();
-        }
-
-        return string;
+        return "[truckID=" + truckID + ", licensePlate=" + licencePlate + ", truckModel=" + truckModel + ", available= " + available + "]";
     }
 }
-

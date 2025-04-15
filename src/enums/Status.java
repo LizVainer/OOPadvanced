@@ -1,5 +1,7 @@
-package components;
-
+//Elizaveta Vainer 332412055
+//Shir Cohen 207365024
+package enums;
+//enum list for status
 public enum Status {
     CREATION,COLLECTION,BRANCH_STORAGE,HUB_TRANSPORT,HUB_STORAGE,BRANCH_TRANSPORT,DELIVERY,DISTRIBUTION,DELIVERED
 }

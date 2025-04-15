@@ -1,34 +1,31 @@
+//Elizaveta Vainer 332412055
+//Shir Cohen 207365024
 package components;
+
+import enums.*;
 
 public class SmallPackage extends Package {
     private boolean acknowledge;
 
-    //ctor
-    public SmallPackage(Priority priority, Address senderAddress, Address destinationAddress, boolean acknowledge){
+    //constructor
+    //gets priority, sender, destination, and if acknowledgment is required
+    //sets up small package with base values and flag
+    public SmallPackage(Priority priority, Address senderAddress, Address destinationAddress, boolean acknowledge) {
         super(priority, senderAddress, destinationAddress);
         this.acknowledge = acknowledge;
-
-
     }
-    //get and set
-    public boolean getAcknowledge() {
+
+    //gets nothing
+    //returns whether acknowledgment is required
+    public boolean isAcknowledge() {
         return acknowledge;
     }
 
-    public void setAcknowledge(boolean acknowledge) {
-        this.acknowledge = acknowledge;
-    }
-
-    //Extra methods
+    //gets nothing
+    //builds string for small package with all details
+    //returns the formatted string
     @Override
-    public boolean equals(Object obj){
-        if((obj) instanceof SmallPackage){
-            SmallPackage other= (SmallPackage) obj;
-            if(this.acknowledge==other.acknowledge) return true;
-        }
-        return false;
+    public String toString() {
+        return super.toString().replace("]", ", acknowledge=" + acknowledge + "]");
     }
-    @Override
-    public String toString(){return "Acknowledge: "+this.acknowledge;}
 }
-
